@@ -42,3 +42,5 @@ const STRING = {
         COPIRIGHT: 'Copiryght, SportSee 2020',
     },
 };
+
+export default STRING;
