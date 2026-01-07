@@ -1,0 +1,5 @@
+.app {
+    height: 100%;
+    grid-template-columns: max-content repeat(7, 1fr);
+    grid-template-rows: max-content repeat(7, 1fr);
+}

@@ -1,0 +1,90 @@
+:root {
+    /* color variable */
+    --primary: #e60000;
+    --background-white: #ffffff;
+    --background-black: #020203;
+    --chart-black-primary: #282d30;
+    --chart-red-primary: #ff0000;
+    --chart-red-primary--fade: #ff0101b2;
+    --chart-red-secondary: var(--primary);
+    --icon-red: var(--chart-red-primary);
+    --icon-red-background: #fbeaea;
+    --icon-blue: #4ab8ff;
+    --icon-blue-background: #e9f4fb;
+    --icon-yellow: #fdcc0c;
+    --icon-yellow-background: #faf6e5;
+    --icon-pink: #fd5181;
+    --icon-pink-background: #fbeaef;
+
+    /*font variable */
+    --font-light: 400;
+    --font-regular: 500;
+    --font-bold: 700;
+
+    --font-xxsmall: 12px;
+    --font-xsmall: 14px;
+    --font-small: 15px;
+    --font-normal: 18px;
+    --font-large: 20px;
+    --font-xlarge: 24px;
+    --font-xxlarge: 48px;
+
+    --font-color-grey: #74798c;
+    --font-color-black: #000000;
+    --font-color-light-black: #282d30;
+    --font-color-white: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    font-optical-sizing: auto;
+    font-size: var(--font-normal);
+    font-weight: var(--font-regular);
+}
+
+html {
+    height: 100vh;
+}
+
+body {
+    margin: 0;
+    height: 100%;
+}
+
+#root {
+    height: 100%;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex--centre-item {
+    align-items: center;
+}
+
+.flex--centre-content {
+    justify-content: center;
+}
+
+.flex--column {
+    flex-direction: column;
+}
+
+.grid {
+    display: grid;
+}
+
+.grid--8c {
+    grid-template-columns: repeat(8, 1fr);
+}
+
+.grid--8r {
+    grid-template-rows: repeat(8, 1fr);
+}
