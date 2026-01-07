@@ -1,6 +1,6 @@
-async function fetchData(url) {
+async function fetchData(url, request = {}) {
     try {
-        const responce = await fetch(url);
+        const responce = await fetch(url, request);
         if (!responce.ok) return { error: true, status: responce.status };
         const data = await responce.json();
         return { error: false, data, status: responce.status };

@@ -5,8 +5,8 @@ import STRING from '../../constante/String';
 import UserService from '../UserService';
 
 class User {
-    static async getUserById(id) {
-        const { user, error } = UserService.getUserById(id);
+    static async getUserById(id, signal) {
+        const { user, error } = UserService.getUserById(id, signal);
         if (error) throw new Error('une erreur et survene', error);
         return new User(user);
     }
@@ -19,8 +19,8 @@ class User {
     }
 
     get activityData() {
-        return async () => {
-            const { userActivity, error } = await UserService.getUserActivityById(this.id);
+        return async (signal) => {
+            const { userActivity, error } = await UserService.getUserActivityById(this.id, signal);
             if (error) throw new Error('une erreur et survene', error);
             const { sessions } = userActivity;
             return {
@@ -35,8 +35,8 @@ class User {
     }
 
     get sesionTimeData() {
-        return async () => {
-            const { session, error } = await UserService.getUserSessionsById(this.id);
+        return async (signal) => {
+            const { session, error } = await UserService.getUserSessionsById(this.id, signal);
             if (error) throw new Error('une erreur et survene', error);
             const { sessions } = session;
             return {
@@ -48,8 +48,8 @@ class User {
     }
 
     get performanceData() {
-        return async () => {
-            const { performance, error } = await UserService.getUserPerformanceById(this.id);
+        return async (signal) => {
+            const { performance, error } = await UserService.getUserPerformanceById(this.id, signal);
             if (error) throw new Error('une erreur et survene', error);
             const { data, kind } = performance;
             return {
