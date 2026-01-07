@@ -1,0 +1,27 @@
+.header {
+    background: var(--background-black);
+    grid-column: 1/9;
+    grid-row: 1/2;
+    height: 91px;
+    padding-left: 28px;
+    padding-top: 18px;
+    gap: 149px;
+}
+
+.header img {
+    width: 178px;
+    height: 61px;
+}
+
+.header__nav {
+    gap: 219px;
+    width: max-content;
+    flex-grow: 1;
+    justify-content: end;
+    padding-right: 91px;
+}
+
+.header__nav__link {
+    color: var(--font-color-white);
+    font-size: var(--font-xlarge);
+}
