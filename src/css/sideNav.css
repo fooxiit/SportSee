@@ -1,0 +1,26 @@
+.side-nav {
+    background: var(--background-black);
+    grid-column: 1/2;
+    grid-row: 2/9;
+    width: 117px;
+    height: 100%;
+}
+
+.side-nav__nav-icons {
+    gap: 20px;
+    margin: auto;
+}
+
+.side-nav__nav-icon {
+    height: 64px;
+    width: 64px;
+    border-radius: 6px;
+    background: var(--background-white);
+}
+
+.side-nav__copiryght {
+    font-size: var(--font-xxsmall);
+    writing-mode: vertical-rl;
+    color: var(--font-color-white);
+    margin-bottom: 59px;
+}
