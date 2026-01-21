@@ -1,0 +1,39 @@
+.user-average-sessions {
+    overflow: hidden;
+}
+.user-average-sessions .tolltip {
+    padding: 1px 7px;
+    background-color: var(--background-white);
+    color: var(--font-color-black);
+    height: 24px;
+    overflow: visible;
+}
+
+.user-average-sessions .tolltip :is(li, ul) {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.user-average-sessions .tolltip ul {
+    height: 100%;
+}
+
+.user-average-sessions .tolltip li {
+    font-size: 8px;
+    align-self: center;
+    text-align: center;
+}
+
+.user-average-sessions .fade-screen {
+    position: absolute;
+    top: -1000px;
+    right: 100;
+    left: -5px;
+    bottom: 100;
+    height: 3000px;
+    width: 300px;
+    opacity: 0.1;
+    background: black;
+    z-index: -1;
+}
