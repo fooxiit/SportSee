@@ -1,4 +1,4 @@
-import STRING from '../../constante/String';
+import STRING from '../constante/String';
 
 function getKindName(kindKey, kinds) {
     const kindName = kinds[kindKey];
