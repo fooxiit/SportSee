@@ -1,8 +1,9 @@
 import React from 'react';
-import { NAV_ICONS } from '../constante/link';
-import NavIcon from './NavIcon';
-import '../css/sideNav.css';
-import STRING from '../constante/String';
+import { NAV_ICONS } from '../../constante/link';
+
+import './sideNav.css';
+import STRING from '../../constante/String';
+import NavIcon from '../navIcon/NavIcon';
 
 export default function Side() {
     return (

@@ -1,0 +1,37 @@
+.info {
+    padding: 32px;
+    gap: 24px;
+    width: 258px;
+    height: 124px;
+    background: var(--background-grey);
+    border-radius: 5px;
+}
+
+.info__logo {
+    width: 60px;
+    height: 60px;
+}
+
+.info__logo[data-type='calorieCount'] {
+    background: var(--icon-red-background);
+}
+.info__logo[data-type='proteinCount'] {
+    background: var(--icon-blue-background);
+}
+.info__logo[data-type='carbohydrateCount'] {
+    background: var(--icon-yellow-background);
+}
+.info__logo[data-type='lipidCount'] {
+    background: var(--icon-pink-background);
+}
+
+.info__value__count {
+    font-size: var(--font-large);
+    font-weight: var(--font-bold);
+}
+
+.info__value__name {
+    font-size: var(--font-xsmall);
+    font-weight: var(--font-regular);
+    color: var(--font-color-grey);
+}

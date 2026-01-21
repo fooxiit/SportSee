@@ -1,6 +1,6 @@
-import LINKS from '../constante/link';
-import Link from './Link';
-import '../css/header.css';
+import LINKS from '../../constante/link';
+import Link from '../link/Link';
+import './header.css';
 
 export default function Header() {
     return (
