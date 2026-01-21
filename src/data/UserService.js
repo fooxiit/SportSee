@@ -10,25 +10,26 @@ class UserService {
     static async getUserById(id, signal) {
         const { data, error } = await fetchData(`${this.#URL_API}user/${id}`, { signal });
         if (error) return { error };
-        return { user: data, error };
+
+        return { user: data.data, error };
     }
 
     static async getUserActivityById(id, signal) {
         const { data, error } = await fetchData(`${this.#URL_API}user/${id}/activity`, { signal });
         if (error) return { error };
-        return { userActivity: data, error };
+        return { userActivity: data.data, error };
     }
 
     static async getUserSessionsById(id, signal) {
         const { data, error } = await fetchData(`${this.#URL_API}user/${id}/average-sessions`, { signal });
         if (error) return { error };
-        return { session: data, error };
+        return { session: data.data, error };
     }
 
     static async getUserPerformanceById(id, signal) {
         const { data, error } = await fetchData(`${this.#URL_API}user/${id}/performance`, { signal });
         if (error) return { error };
-        return { performance: data, error };
+        return { performance: data.data, error };
     }
 }
 
