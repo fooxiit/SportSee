@@ -1,5 +1,6 @@
 const STRING = {
     FR: {
+        TITLE: 'Boujour',
         CATCHPHRASE: 'Félicitation ! Vous avez explosé vos objectifs hier 👏',
         LINK: {
             HOME: 'Accueil',
@@ -30,14 +31,14 @@ const STRING = {
             },
             SCORE: {
                 TITLE: 'Score',
-                LEDGEND: 'de votre objectif',
+                LEDGEND: ['de votre', ['objectif']],
             },
         },
         INFO: {
-            CAL: 'Calories',
-            PROT: 'Proteines',
-            GLUC: 'Glucides',
-            LIP: 'Lipides',
+            CAL: { NAME: 'Calories', UNIT: 'kCal' },
+            PROT: { NAME: 'Proteines', UNIT: 'g' },
+            GLUC: { NAME: 'Glucides', UNIT: 'g' },
+            LIP: { NAME: 'Lipides', UNIT: 'g' },
         },
         COPIRIGHT: 'Copiryght, SportSee 2020',
     },
