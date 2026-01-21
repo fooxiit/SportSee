@@ -1,18 +1,27 @@
-import { Label } from 'recharts';
-import { getDayFromDate, dayType, getDayFromNum } from '../../assets/function/getDayFrom';
-import getKindName from '../../assets/function/kindMaping';
-import COLORS from '../../constante/colors';
-import STRING from '../../constante/String';
-import infoFactory from '../../factory/StatsFactory';
-import UserService from '../UserService';
+import { getDayFromDate, dayType, getDayFromNum } from '../../../function/getDayFrom';
+import getKindName from '../../../function/kindMaping';
+import COLORS from '../../../constante/colors';
+import STRING from '../../../constante/String';
+import infoFactory from '../../../factory/StatsFactory';
+import UserService from '../../UserService';
 
 class User {
+    /**
+     *
+     * @param {Number} id
+     * @param {AbortSignal} signal
+     * @returns {Promise<User>}
+     */
     static async getUserById({ id, signal }) {
         const { user, error } = await UserService.getUserById(id, signal);
         if (error) throw new Error('une erreur et survene', error);
         return new User(user);
     }
 
+    /**
+     *
+     * @param {UserType} param
+     */
     constructor({ id, userInfos, score, todayScore, keyData }) {
         this.id = id;
         this.userInfos = userInfos;
