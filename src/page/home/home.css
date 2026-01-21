@@ -1,0 +1,101 @@
+.home {
+    grid-auto-rows: min-content;
+    grid-template-columns: repeat(4, 1fr);
+    width: 100%;
+    gap: 28px 30px;
+    align-items: center;
+}
+
+.home__chart {
+    height: 263px;
+    width: 258px;
+    border-radius: 5px;
+    background: var(--background-grey);
+}
+
+.home h2 {
+    font-size: var(--font-small);
+    margin: 0;
+    width: 100%;
+}
+
+.home__header {
+    grid-row: 1/2;
+    grid-column: 1/5;
+    gap: 41px;
+}
+
+.home__header__title :is(h1, span) {
+    margin: 0;
+    font-size: var(--font-xxlarge);
+}
+
+.home__header__catchphrase {
+    font-size: var(--font-xsmall);
+    font-weight: var(--font-light);
+}
+
+.home__header__title span {
+    color: var(--primary);
+}
+
+.home__user-info {
+    height: 100%;
+    width: 100%;
+    grid-row: 2/5;
+    grid-column: 4/5;
+}
+
+.home__user-activity {
+    grid-row: 2/4;
+    grid-column: 1/4;
+    height: 320px;
+    width: 100%;
+}
+
+.home__user-average-sessions {
+    grid-row: 4/5;
+    grid-column: 1/2;
+    background: var(--chart-red-primary);
+}
+.home__user-average-sessions h2 {
+    margin: 23px 0 0 34px;
+    z-index: 1;
+    width: 147px;
+    color: var(--chart-white--fade);
+}
+.home__user-stats {
+    grid-row: 4/5;
+    grid-column: 2/3;
+    background: var(--chart-black-primary);
+    justify-self: center;
+}
+.home__user-stats .label {
+    color: white;
+    font-size: 12px;
+}
+.home__user-score {
+    grid-row: 4/5;
+    grid-column: 3/4;
+    justify-self: end;
+}
+
+.home__user-score h2 {
+    margin: 24px 0 0 30px;
+}
+
+.home__user-score .chart {
+    clip-path: circle(44.5%);
+    background: white;
+}
+
+.home__user-score .score {
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.home__user-score .ledgend {
+    font-size: 16px;
+    font-weight: 500;
+    fill: var(--font-color-grey);
+}
