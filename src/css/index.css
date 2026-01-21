@@ -3,9 +3,11 @@
     --primary: #e60000;
     --background-white: #ffffff;
     --background-black: #020203;
+    --background-grey: #fbfbfb;
     --chart-black-primary: #282d30;
     --chart-red-primary: #ff0000;
     --chart-red-primary--fade: #ff0101b2;
+    --chart-white--fade: #ffffff75;
     --chart-red-secondary: var(--primary);
     --icon-red: var(--chart-red-primary);
     --icon-red-background: #fbeaea;
