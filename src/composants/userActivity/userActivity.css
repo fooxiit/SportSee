@@ -1,0 +1,50 @@
+.user-activity .legend-warpper {
+    margin: 24px 26px 0 32px;
+    justify-content: space-between;
+}
+
+.user-activity .legend-warpper h2 {
+    width: max-content;
+}
+
+.user-activity .legend {
+    margin: 0;
+    justify-content: end;
+    gap: 32px;
+}
+.user-activity .legend-value {
+    gap: 12px;
+}
+.user-activity .legend-icon {
+    width: 8px;
+    height: 8px;
+    align-self: center;
+    border-radius: 100%;
+    background: attr(data-color type(<color>));
+}
+
+.user-activity .legend-value {
+    list-style: none;
+}
+
+.user-activity .tolltip {
+    padding: 9px 6px;
+    background-color: var(--primary);
+    color: var(--font-color-white);
+}
+
+.user-activity .tolltip :is(li, ul) {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.user-activity .tolltip li {
+    font-size: 7px;
+    align-self: center;
+    text-align: center;
+}
+
+.user-activity .tolltip ul {
+    gap: 13px;
+}
