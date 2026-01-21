@@ -1,7 +1,8 @@
-import MainContent from './composants/MainContent';
-import Header from './composants/Header';
-import Side from './composants/SideNav';
+import Header from './composants/header/Header';
+import MainContent from './composants/mainContent/MainContent';
+import Side from './composants/sideNavBar/SideNav';
 import './css/app.css';
+import Home from './page/home/Home';
 
 function App() {
     return (
@@ -9,7 +10,7 @@ function App() {
             <Header />
             <Side />
             <MainContent>
-                <h1>Sport see</h1>
+                <Home />
             </MainContent>
         </div>
     );
