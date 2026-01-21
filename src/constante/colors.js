@@ -3,13 +3,13 @@ const COLORS = {
         DAILY: {
             over: '#C4C4C480',
             FILL: {
-                WEIGHT: '#E60000',
-                BURN: '#282D30',
+                WEIGHT: '#282D30',
+                BURN: '#E60000 ',
             },
         },
         SESION_TIME: {
             FILL: {
-                TIME: '#FFFFFF',
+                TIME: '#ffffff75',
             },
             BACKGROUND: '#FF0000',
         },
@@ -21,10 +21,8 @@ const COLORS = {
             CHART_LINE: '#FFFFFF',
         },
         SCORE: {
-            BACKGROUND: '#FBFBFB',
-            FILL: {
-                SCORE: '#E60000',
-            },
+            BACKGROUND: '#fbfbfb',
+            FILL: '#E60000',
         },
     },
 };
