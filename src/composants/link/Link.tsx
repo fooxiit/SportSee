@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
-export default function Link({ children, href, alt, classname = '' }) {
+interface LinkProps {
+    children: ReactNode;
+    href: string;
+    classname?: string;
+}
+
+export default function Link({ children, href, classname = '' }: LinkProps) {
     return (
-        <a className={`link ${classname}`} href={href} alt={alt}>
+        <a className={`link ${classname}`} href={href}>
             {children}
         </a>
     );
