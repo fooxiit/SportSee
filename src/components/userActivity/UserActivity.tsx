@@ -4,7 +4,10 @@ import useFetchData from '../../hook/useFetchData';
 import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import STRING from '../../constante/String';
 import './UserActivity.css';
-export default function UserActivity({ className = '' }) {
+interface UserActivityProps {
+    className?: string;
+}
+export default function UserActivity({ className = '' }: UserActivityProps) {
     const { user } = useUserContext();
     const getActivity = useMemo(() => user.activityData, [user]);
     const parm = useMemo(() => ({}), []);

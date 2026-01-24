@@ -5,8 +5,10 @@ import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YA
 import COLORS from '../../constante/colors';
 import STRING from '../../constante/String';
 import './userAverageSessions.css';
-
-export default function UserAverageSessions({ className = '' }) {
+interface UserAverageSessionsProps {
+    className?: string;
+}
+export default function UserAverageSessions({ className = '' }: UserAverageSessionsProps) {
     const { user } = useUserContext();
     const getUserData = useMemo(() => user.sesionTimeData, [user]);
     const parm = useMemo(() => ({}), []);

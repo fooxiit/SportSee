@@ -1,4 +1,8 @@
+import { ReactNode } from 'react';
 import './mainContent.css';
-export default function MainContent({ children }) {
+interface MainContentProps {
+    children: ReactNode;
+}
+export default function MainContent({ children }: MainContentProps) {
     return <div className="main-content">{children}</div>;
 }

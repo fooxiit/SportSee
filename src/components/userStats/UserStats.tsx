@@ -3,8 +3,10 @@ import useUserContext from '../../hook/useUserContext';
 import useFetchData from '../../hook/useFetchData';
 import { PolarAngleAxis, PolarGrid, PolarRadiusAxis, Radar, RadarChart, ResponsiveContainer } from 'recharts';
 import COLORS from '../../constante/colors';
-
-export default function UserStats({ className = '' }) {
+interface UserStatsProps {
+    className?: string;
+}
+export default function UserStats({ className = '' }: UserStatsProps) {
     const { user } = useUserContext();
     const getStat = useMemo(() => user.performanceData, [user]);
     const parm = useMemo(() => ({}), []);

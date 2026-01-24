@@ -1,8 +1,10 @@
 import useUserContext from '../../hook/useUserContext';
 import { RadialBarChart, PolarAngleAxis, RadialBar, Text, Label, ResponsiveContainer } from 'recharts';
 import STRING from '../../constante/String';
-
-export default function UserScore({ className = '' }) {
+interface UserScoreProps {
+    className?: string;
+}
+export default function UserScore({ className = '' }: UserScoreProps) {
     const { user } = useUserContext();
     return (
         <div className={`user-score flex flex--column flex--centre-item ${className}`}>

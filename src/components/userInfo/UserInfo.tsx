@@ -2,8 +2,10 @@ import { useMemo } from 'react';
 import useUserContext from '../../hook/useUserContext';
 import './userInfo.css';
 import Info from '../info/Info';
-
-export default function UserInfo({ className = '' }) {
+interface UserInfoProps {
+    className?: string;
+}
+export default function UserInfo({ className = '' }: UserInfoProps) {
     const { user } = useUserContext();
     const infos = useMemo(() => user.infos, [user]);
     return (
