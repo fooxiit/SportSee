@@ -1,3 +1,4 @@
+type AxisDomainItem = string | number | ((d: number) => string | number) | 'auto' | 'dataMin' | 'dataMax';
 namespace ChartTypes {
     interface ChartBase<T> {
         xAxisKey?: string;
@@ -8,8 +9,8 @@ namespace ChartTypes {
         yAxisId?: string | number;
         position?: 'left' | 'right';
         hide?: boolean;
-        max?: number | string | 'dataMin' | ((dataMax: number) => number);
-        min?: number | string | 'dataMin' | ((dataMin: number) => number);
+        max?: AxisDomainItem;
+        min?: AxisDomainItem;
         tickCount?: number;
         tick?: boolean;
     }
@@ -18,7 +19,7 @@ namespace ChartTypes {
             dataKey: string;
             fill: string;
             name?: string;
-            barRadus?: number[];
+            barRadus?: number | [number, number, number, number];
             yAxis?: YAxis;
         }
         export interface Chart<T> extends ChartBase<T> {
