@@ -25,6 +25,6 @@ const COLORS = {
             FILL: '#E60000',
         },
     },
-};
+} as const;
 
 export default COLORS;
