@@ -14,6 +14,7 @@ const UserContextWarpper = ({ children, userId }: UserContextProps) => {
     const { isLoading, onError, data } = useFetchData(fetcher, parm);
     if (onError.onError) return <div>error</div>;
     if (isLoading) return <div>loading</div>;
+    if (data === null) return <div>error</div>;
     return <UserContext value={{ user: data }}>{children}</UserContext>;
 };
 
