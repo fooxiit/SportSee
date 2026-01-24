@@ -1,11 +1,16 @@
-import User from '../data/class/User';
 import UserContext from './UserContext';
 import useFetchData from '../hook/useFetchData';
-import { useMemo } from 'react';
+import { ReactNode, useCallback, useMemo } from 'react';
+import User from '../data/class/user/User';
 
-const UserContextWarpper = ({ children, userId }) => {
+interface UserContextProps {
+    children: ReactNode;
+    userId: number;
+}
+
+const UserContextWarpper = ({ children, userId }: UserContextProps) => {
     const parm = useMemo(() => ({ id: userId }), [userId]);
-    const fetcher = useMemo(() => User.getUserById, []);
+    const fetcher = useCallback(User.getUserById, []);
     const { isLoading, onError, data } = useFetchData(fetcher, parm);
     if (onError.onError) return <div>error</div>;
     if (isLoading) return <div>loading</div>;
