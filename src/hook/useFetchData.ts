@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 
-function useFetchData(fetchingFunction, param = {}) {
+function useFetchData<T>(fetchingFunction: ({}: any) => Promise<T>, param = {}): { isLoading: boolean; onError: { onError: boolean; cause?: any }; data: T | null } {
     const [isLoading, setIsLoading] = useState(true);
     const [onError, setOnError] = useState({ onError: false });
-    const [data, setData] = useState(null);
+    const [data, setData] = useState<T | null>(null);
     useEffect(() => {
         const abortSingnal = new AbortController();
         async function fetching() {
@@ -11,8 +11,8 @@ function useFetchData(fetchingFunction, param = {}) {
                 const data = await fetchingFunction({ ...param, signal: abortSingnal.signal });
                 setData(data);
                 setIsLoading(false);
-            } catch (error) {
-                setOnError((prev) => ({ ...prev, onError: true, errorMessage: error.message, errorStatus: error.status }));
+            } catch (error: any) {
+                setOnError((prev) => ({ ...prev, onError: true, cause: error }));
             }
         }
         fetching();
