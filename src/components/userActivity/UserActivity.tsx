@@ -1,42 +1,47 @@
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import useUserContext from '../../hook/useUserContext';
 import useFetchData from '../../hook/useFetchData';
-import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+import { Bar, BarChart, CartesianGrid, DefaultLegendContentProps, Legend, ResponsiveContainer, Tooltip, TooltipContentProps, XAxis, YAxis } from 'recharts';
 import STRING from '../../constante/String';
 import './UserActivity.css';
+import { AxisDomain } from 'recharts/types/util/types';
 interface UserActivityProps {
     className?: string;
 }
 export default function UserActivity({ className = '' }: UserActivityProps) {
     const { user } = useUserContext();
-    const getActivity = useMemo(() => user.activityData, [user]);
+    const getActivity = useCallback(user.getActivityData, [user]);
     const parm = useMemo(() => ({}), []);
     const { isLoading, onError, data } = useFetchData(getActivity, parm);
     if (onError.onError) return <div>error</div>;
     if (isLoading) return <div>loading</div>;
-
+    if (data === null) return <div>error</div>;
     return (
         <div className={`user-activity flex flex--column ${className}`}>
             <ResponsiveContainer width="100%" height="100%">
                 <BarChart barSize={7} barGap={8} data={data.data}>
                     <Tooltip content={CustumTooltip} />
-                    <Legend height="95px" content={CustumLengend} verticalAlign="top" align="right" />
+                    <Legend height={95} content={CustumLengend} verticalAlign="top" align="right" />
                     <CartesianGrid strokeDasharray="3 3" vertical={false} />
                     <XAxis dataKey={data.xAxisKey} />
+                    {data.bars.map((bar) => {
+                        if (!bar.yAxis) return;
+                        return (
+                            <YAxis
+                                key={`barChart-activity-yaxis-${bar.dataKey}`}
+                                domain={[bar.yAxis.min, bar.yAxis.max] as AxisDomain}
+                                dataKey={bar.dataKey}
+                                yAxisId={bar.yAxis.id}
+                                width="auto"
+                                orientation={bar.yAxis?.position}
+                                tickCount={bar.yAxis.tickCount}
+                                tick={bar.yAxis.tick}
+                            />
+                        );
+                    })}
+
                     {data.bars.map((bar) => (
-                        <YAxis
-                            key={`barChart-activity-yaxis-${bar.dataKey}`}
-                            domain={[bar.yAxis.min, bar.yAxis.max]}
-                            dataKey={bar.dataKey}
-                            yAxisId={bar.yAxis.id}
-                            width="auto"
-                            orientation={bar.yAxis.position}
-                            tickCount={bar.yAxis.tickCount}
-                            tick={bar.yAxis.tick}
-                        />
-                    ))}
-                    {data.bars.map((bar) => (
-                        <Bar radius={bar.barRadus} yAxisId={bar.yAxis.id} key={`barChart-activity-${bar.dataKey}`} dataKey={bar.dataKey} name={bar.name} fill={bar.fill} />
+                        <Bar radius={bar.barRadus} yAxisId={bar.yAxis?.id} key={`barChart-activity-${bar.dataKey}`} dataKey={bar.dataKey} name={bar.name} fill={bar.fill} />
                     ))}
                 </BarChart>
             </ResponsiveContainer>
@@ -44,7 +49,8 @@ export default function UserActivity({ className = '' }: UserActivityProps) {
     );
 }
 
-function CustumLengend({ payload }) {
+function CustumLengend({ payload }: DefaultLegendContentProps) {
+    if (!payload) return <div className="legend-warpper flex"></div>;
     return (
         <div className="legend-warpper flex">
             <h2>{STRING.FR.CHARTS.DAILY.TITTLE}</h2>
@@ -60,7 +66,11 @@ function CustumLengend({ payload }) {
     );
 }
 
-function CustumTooltip({ payload }) {
+function CustumTooltip({ payload }: TooltipContentProps<any, any>) {
+    interface dataType {
+        value: number;
+        dataKey: keyof typeof unit;
+    }
     const unit = {
         kg: 'kg',
         cal: 'Kcal',
@@ -68,7 +78,7 @@ function CustumTooltip({ payload }) {
     return (
         <div className="tolltip ">
             <ul className="flex flex--column">
-                {payload.map((data, index) => (
+                {payload.map((data: dataType, index) => (
                     <li key={`userActivity-tooltip-data-${index}`}>
                         {data.value}
                         {unit[data.dataKey]}
