@@ -1,4 +1,4 @@
-import { s } from 'vite/dist/node/chunks/moduleRunnerTransport';
+import { InfoType } from '../../../types/infoType';
 
 namespace UserType {
     export type Info = {
@@ -51,12 +51,7 @@ namespace UserType {
         }
     }
 
-    export interface keyData {
-        calorieCount: number;
-        proteinCount: number;
-        carbohydrateCount: number;
-        lipidCount: number;
-    }
+    export type keyData = Record<InfoType.Kind, number>;
 
     export interface User {
         id: number;
@@ -64,9 +59,9 @@ namespace UserType {
         score: number;
         userData: keyData;
 
-        getActivityData({ signal }: { signal: AbortController }): Promise<any>;
-        getSesionTimeData({ signal }: { signal: AbortController }): Promise<any>;
-        getPerformanceData({ signal }: { signal: AbortController }): Promise<any>;
+        getActivityData({ signal }: { signal: AbortSignal }): Promise<any>;
+        getSesionTimeData({ signal }: { signal: AbortSignal }): Promise<any>;
+        getPerformanceData({ signal }: { signal: AbortSignal }): Promise<any>;
     }
 }
 

@@ -3,17 +3,17 @@
  * @param {String} date
  * @returns {String}
  */
-export function getDayFromDate(date, type) {
+export function getDayFromDate(date: string, type: DayType) {
     switch (type) {
-        case dayType.firstLetter:
-            break;
+        case DayType.firstLetter:
+            return ['D', 'L', 'M', 'M', 'J', 'V', 'S'][new Date(date).getDay()];
 
-        case dayType.number:
+        case DayType.number:
             return parseInt(date.split('-')[2], 10).toString(10);
     }
 }
 
-export function getDayFromNum(num) {
+export function getDayFromNum(num: number): 'L' | 'M' | 'J' | 'V' | 'S' | 'D' {
     switch (num) {
         case dayNum[1]:
             return 'L';
@@ -29,6 +29,8 @@ export function getDayFromNum(num) {
             return 'S';
         case dayNum[7]:
             return 'D';
+        default:
+            throw new Error('Invalid day number');
     }
 }
 
@@ -42,4 +44,7 @@ const dayNum = {
     7: 7,
 };
 
-export const dayType = { number: 'num', firstLetter: 'fl' };
+export enum DayType {
+    number,
+    firstLetter,
+}

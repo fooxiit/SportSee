@@ -1,26 +1,19 @@
 import STRING from '../constante/String';
+import { InfoType } from '../types/infoType';
 
-function infoFactory(type, value) {
+function infoFactory(type: string, value: number) {
     switch (type) {
-        case InfoType.calorieCount:
+        case InfoType.Kind.calorieCount:
             return { imgSrc: 'energy.svg', name: STRING.FR.INFO.CAL.NAME, unit: STRING.FR.INFO.CAL.UNIT, value, type };
-        case InfoType.proteinCount:
+        case InfoType.Kind.proteinCount:
             return { imgSrc: 'chicken.svg', name: STRING.FR.INFO.PROT.NAME, unit: STRING.FR.INFO.PROT.UNIT, value, type };
-        case InfoType.carbohydrateCount:
+        case InfoType.Kind.carbohydrateCount:
             return { imgSrc: 'apple.svg', name: STRING.FR.INFO.GLUC.NAME, unit: STRING.FR.INFO.GLUC.UNIT, value, type };
-        case InfoType.lipidCount:
+        case InfoType.Kind.lipidCount:
             return { imgSrc: 'cheeseburger.svg', name: STRING.FR.INFO.LIP.NAME, unit: STRING.FR.INFO.LIP.UNIT, value, type };
 
         default:
             throw new Error('Stat type not found');
     }
 }
-
-const InfoType = {
-    calorieCount: 'calorieCount',
-    proteinCount: 'proteinCount',
-    carbohydrateCount: 'carbohydrateCount',
-    lipidCount: 'lipidCount',
-};
-
 export default infoFactory;
