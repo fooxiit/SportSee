@@ -59,9 +59,9 @@ namespace UserType {
         score: number;
         userData: keyData;
 
-        getActivityData({ signal }: { signal: AbortSignal }): Promise<any>;
-        getSesionTimeData({ signal }: { signal: AbortSignal }): Promise<any>;
-        getPerformanceData({ signal }: { signal: AbortSignal }): Promise<any>;
+        getActivityData({ signal }: { signal: AbortSignal }): Promise<ChartTypes.BarChart.Chart<ChartTypes.ActivityChart.Data>>;
+        getSesionTimeData({ signal }: { signal: AbortSignal }): Promise<ChartTypes.LineChart.Chart<ChartTypes.SessionsChart.Data>>;
+        getPerformanceData({ signal }: { signal: AbortSignal }): Promise<ChartTypes.RadarChart.Chart<ChartTypes.PerformanceChart.Data>>;
     }
 }
 
