@@ -1,9 +1,9 @@
-import HomeHeader from '../../composants/home/HomeHeader';
-import UserActivity from '../../composants/userActivity/UserActivity';
-import UserAverageSessions from '../../composants/userAverageSession/UserAverageSessions';
-import UserInfo from '../../composants/userInfo/UserInfo';
-import UserScore from '../../composants/userScore/UserScore';
-import UserStats from '../../composants/userStats/UserStats';
+import HomeHeader from '../../components/home/HomeHeader';
+import UserActivity from '../../components/userActivity/UserActivity';
+import UserAverageSessions from '../../components/userAverageSession/UserAverageSessions';
+import UserInfo from '../../components/userInfo/UserInfo';
+import UserScore from '../../components/userScore/UserScore';
+import UserStats from '../../components/userStats/UserStats';
 import UserContextWarpper from '../../contexte/UserContextWarpper';
 import './home.css';
 

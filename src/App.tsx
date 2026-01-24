@@ -1,6 +1,6 @@
-import Header from './composants/header/Header';
-import MainContent from './composants/mainContent/MainContent';
-import Side from './composants/sideNavBar/SideNav';
+import Header from './components/header/Header';
+import MainContent from './components/mainContent/MainContent';
+import Side from './components/sideNavBar/SideNav';
 import './css/app.css';
 import Home from './page/home/Home';
 
