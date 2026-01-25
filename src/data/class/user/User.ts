@@ -17,7 +17,7 @@ class User implements UserType.User {
     static async getUserById({ id, signal }: { id: number; signal?: AbortSignal }): Promise<UserType.User> {
         const responce = await UserService.getUserById(id, signal);
         if (responce.status === FetchDataType.responceStatus.ERROR) throw new Error(responce.message, { cause: responce });
-        return new User(responce.data);
+        return new User(responce.data.data);
     }
 
     constructor({ id, userInfos, score, todayScore, keyData }: UserType.RawData) {
@@ -30,7 +30,7 @@ class User implements UserType.User {
     async getActivityData({ signal }: { signal?: AbortSignal }): Promise<ChartTypes.BarChart.Chart<ChartTypes.ActivityChart.Data>> {
         const responce = await UserService.getUserActivityById(this.id, signal);
         if (responce.status === FetchDataType.responceStatus.ERROR) throw new Error(responce.message, { cause: responce });
-        const { sessions } = responce.data;
+        const { sessions } = responce.data.data;
         return {
             xAxisKey: 'day',
             bars: [
@@ -56,7 +56,7 @@ class User implements UserType.User {
     async getSesionTimeData({ signal }: { signal?: AbortSignal }): Promise<ChartTypes.LineChart.Chart<ChartTypes.SessionsChart.Data>> {
         const responce = await UserService.getUserSessionsById(this.id, signal);
         if (responce.status === FetchDataType.responceStatus.ERROR) throw new Error(responce.message, { cause: responce });
-        const { sessions } = responce.data;
+        const { sessions } = responce.data.data;
         return {
             xAxisKey: 'day',
             lines: [{ dataKey: 'time', fill: COLORS.CHART.SESION_TIME.FILL.TIME }],
@@ -67,7 +67,7 @@ class User implements UserType.User {
     async getPerformanceData({ signal }: { signal?: AbortSignal }): Promise<ChartTypes.RadarChart.Chart<ChartTypes.PerformanceChart.Data>> {
         const responce = await UserService.getUserPerformanceById(this.id, signal);
         if (responce.status === FetchDataType.responceStatus.ERROR) throw new Error(responce.message, { cause: responce });
-        const { data, kind } = responce.data;
+        const { data, kind } = responce.data.data;
         return {
             PolarAngleAxisKey: 'kind',
             radars: [{ dataKey: 'value', fill: COLORS.CHART.STATS.FILL.ALL }],
@@ -75,7 +75,7 @@ class User implements UserType.User {
         };
     }
 
-    get scoreData(): ChartTypes.RadialChart.Chart<ChartTypes.ScoreChart.data> {
+    get scoreData() {
         return {
             score: this.score * 100,
             radialBars: [{ fill: { data: COLORS.CHART.SCORE.FILL, background: COLORS.CHART.SCORE.BACKGROUND }, dataKey: 'score' }],
