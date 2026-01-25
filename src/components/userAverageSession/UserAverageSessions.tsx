@@ -1,7 +1,7 @@
-import React, { useMemo } from 'react';
+import React, { ComponentProps, use, useCallback, useMemo } from 'react';
 import useUserContext from '../../hook/useUserContext';
 import useFetchData from '../../hook/useFetchData';
-import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, TooltipContentProps, XAxis, YAxis } from 'recharts';
 import COLORS from '../../constante/colors';
 import STRING from '../../constante/String';
 import './userAverageSessions.css';
@@ -10,11 +10,12 @@ interface UserAverageSessionsProps {
 }
 export default function UserAverageSessions({ className = '' }: UserAverageSessionsProps) {
     const { user } = useUserContext();
-    const getUserData = useMemo(() => user.sesionTimeData, [user]);
+    const getUserData = useCallback(user.getSesionTimeData.bind(user), [user]);
     const parm = useMemo(() => ({}), []);
     const { isLoading, onError, data } = useFetchData(getUserData, parm);
-    if (onError.onError) return <div>error</div>;
     if (isLoading) return <div>loading</div>;
+    if (onError.onError || data === null) return <div>error</div>;
+
     return (
         <div className={`user-average-sessions flex flex--column ${className}`}>
             <h2>{STRING.FR.CHARTS.SESION_TIME.TITLE}</h2>
@@ -62,7 +63,7 @@ export default function UserAverageSessions({ className = '' }: UserAverageSessi
     );
 }
 
-function CustomTooltip({ payload }) {
+function CustomTooltip({ payload }: TooltipContentProps<string | number, number>) {
     const unit = {
         time: 'min',
     };
@@ -70,7 +71,7 @@ function CustomTooltip({ payload }) {
         <div className="tolltip">
             <div className="fade-screen"></div>
             <ul className="flex flex--column flex--centre-content">
-                {payload.map(({ value, dataKey }) => (
+                {payload.map(({ value, dataKey }: { value: number; dataKey: keyof typeof unit }) => (
                     <li>
                         {value} {unit[dataKey]}
                     </li>

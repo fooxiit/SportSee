@@ -13,6 +13,7 @@ function useFetchData<T>(fetchingFunction: ({}: any) => Promise<T>, param = {}):
                 setIsLoading(false);
             } catch (error: any) {
                 setOnError((prev) => ({ ...prev, onError: true, cause: error }));
+                setIsLoading(false);
             }
         }
         fetching();

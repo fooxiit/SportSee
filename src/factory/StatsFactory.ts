@@ -1,7 +1,7 @@
 import STRING from '../constante/String';
 import { InfoType } from '../types/infoType';
 
-function infoFactory(type: string, value: number) {
+function infoFactory(type: string, value: number): InfoType.Info {
     switch (type) {
         case InfoType.Kind.calorieCount:
             return { imgSrc: 'energy.svg', name: STRING.FR.INFO.CAL.NAME, unit: STRING.FR.INFO.CAL.UNIT, value, type };

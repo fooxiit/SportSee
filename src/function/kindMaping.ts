@@ -1,13 +1,13 @@
 import STRING from '../constante/String';
 
-function getKindName(kindKey, kinds) {
+function getKindName(kindKey: keyof typeof kinds, kinds: { [key: number]: string }) {
     const kindName = kinds[kindKey];
     return nameToFr(kindName);
 }
 
 export default getKindName;
 
-function nameToFr(kindName) {
+function nameToFr(kindName: string) {
     switch (kindName) {
         case kindNameEn.cardio:
             return STRING.FR.CHARTS.STATS.LEDGEND.CARDIO;
@@ -33,4 +33,4 @@ const kindNameEn = {
     strength: 'strength',
     speed: 'speed',
     intensity: 'intensity',
-};
+} as const;

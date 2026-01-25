@@ -1,6 +1,8 @@
 import useUserContext from '../../hook/useUserContext';
-import { RadialBarChart, PolarAngleAxis, RadialBar, Text, Label, ResponsiveContainer } from 'recharts';
+import { RadialBarChart, PolarAngleAxis, RadialBar, Text, Label, ResponsiveContainer, LabelProps, LabelListProps } from 'recharts';
 import STRING from '../../constante/String';
+import { PolarViewBoxRequired } from 'recharts/types/util/types';
+import { LabelContentType, Props } from 'recharts/types/component/Label';
 interface UserScoreProps {
     className?: string;
 }
@@ -29,17 +31,18 @@ export default function UserScore({ className = '' }: UserScoreProps) {
         </div>
     );
 }
-function CustomizedLabel({ value, viewBox }) {
+function CustomizedLabel({ viewBox, value }: Props) {
+    if (!viewBox) return null;
     return (
         <>
             <text style={{ background: 'white' }} x={0} y="40%" textAnchor="middle" dominantBaseline="auto">
-                <tspan className="score" x={viewBox.cx} dy="0em">
+                <tspan className="score" x={(viewBox as PolarViewBoxRequired).cx} dy="0em">
                     {value} %
                 </tspan>
-                <tspan className="ledgend" x={viewBox.cx} dy="1.5em">
+                <tspan className="ledgend" x={(viewBox as PolarViewBoxRequired).cx} dy="1.5em">
                     {STRING.FR.CHARTS.SCORE.LEDGEND[0]}
                 </tspan>
-                <tspan className="ledgend" x={viewBox.cx} dy="1.5em">
+                <tspan className="ledgend" x={(viewBox as PolarViewBoxRequired).cx} dy="1.5em">
                     {STRING.FR.CHARTS.SCORE.LEDGEND[1]}
                 </tspan>
             </text>
