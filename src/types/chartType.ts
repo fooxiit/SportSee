@@ -68,6 +68,7 @@ namespace ChartTypes {
             day: 'L' | 'M' | 'J' | 'V' | 'S' | 'D';
             time: number;
         }
+        export type Type = LineChart.Chart<Data>;
     }
 
     export namespace ActivityChart {
@@ -76,6 +77,7 @@ namespace ChartTypes {
             kg: number;
             cal: number;
         }
+        export type Type = BarChart.Chart<Data>;
     }
 
     export namespace PerformanceChart {
@@ -83,11 +85,13 @@ namespace ChartTypes {
             value: number;
             kind: string;
         }
+        export type Type = RadarChart.Chart<Data>;
     }
 
     export namespace ScoreChart {
         export interface data {
             score: number;
         }
+        export type Type = RadialChart.Chart<data>;
     }
 }
