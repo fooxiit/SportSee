@@ -1,7 +1,10 @@
 import LINKS from '../../constante/link';
 import Link from '../link/Link';
 import './header.css';
-
+/**
+ * Header component
+ * @returns
+ */
 export default function Header() {
     return (
         <header className="header flex flex--centre-item">

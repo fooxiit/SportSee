@@ -1,14 +1,20 @@
-import React, { ReactElement, useCallback, useMemo } from 'react';
-import useUserContext from '../../hook/useUserContext';
-import useFetchData from '../../hook/useFetchData';
 import { PolarAngleAxis, PolarGrid, PolarRadiusAxis, Radar, RadarChart, ResponsiveContainer } from 'recharts';
 import COLORS from '../../constante/colors';
-import { Props } from 'recharts/types/component/Label';
 import { TickItemTextProps } from 'recharts/types/polar/PolarAngleAxis';
+/**
+ * @description Chart types namespace
+ * @property className Optional additional class names
+ * @property data Performance chart data
+ */
 interface UserStatsProps {
     className?: string;
     data: ChartTypes.PerformanceChart.Type;
 }
+/**
+ * @description UserStats component to display user stats radar chart
+ * @param props
+ * @returns
+ */
 export default function UserStats({ className = '', data }: UserStatsProps) {
     return (
         <div className={`user-stats ${className}`}>

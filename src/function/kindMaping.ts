@@ -1,12 +1,21 @@
 import STRING from '../constante/String';
-
+/**
+ * @description return kind name in french from kind key and kinds object
+ * @param kindKey
+ * @param kinds
+ * @returns
+ */
 function getKindName(kindKey: keyof typeof kinds, kinds: { [key: number]: string }) {
     const kindName = kinds[kindKey];
     return nameToFr(kindName);
 }
 
 export default getKindName;
-
+/**
+ * @description convert kind name from en to fr
+ * @param kindName
+ * @returns
+ */
 function nameToFr(kindName: string) {
     switch (kindName) {
         case kindNameEn.cardio:
@@ -26,6 +35,10 @@ function nameToFr(kindName: string) {
     }
 }
 
+/**
+ * @constant kindNameEn
+ * @description Mapping of kind keys to their English names.
+ */
 const kindNameEn = {
     cardio: 'cardio',
     energy: 'energy',

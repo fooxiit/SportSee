@@ -1,3 +1,6 @@
+/**
+ * @description Constant object containing string literals used in the application
+ */
 const STRING = {
     FR: {
         TITLE: 'Boujour',

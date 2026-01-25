@@ -1,14 +1,25 @@
-import { useCallback, useMemo } from 'react';
-import useUserContext from '../../hook/useUserContext';
-import useFetchData from '../../hook/useFetchData';
 import { Bar, BarChart, CartesianGrid, DefaultLegendContentProps, Legend, ResponsiveContainer, Tooltip, TooltipContentProps, XAxis, YAxis } from 'recharts';
 import STRING from '../../constante/String';
 import './UserActivity.css';
 import { AxisDomain } from 'recharts/types/util/types';
+
+/**
+ * @description Chart types namespace
+ * @property className Optional additional class names
+ * @property data Activity chart data
+ *
+ */
 interface UserActivityProps {
     className?: string;
     data: ChartTypes.ActivityChart.Type;
 }
+
+/**
+ *
+ * @description UserActivity component to display user activity chart
+ * @param props
+ * @returns
+ */
 export default function UserActivity({ data, className = '' }: UserActivityProps) {
     return (
         <div className={`user-activity flex flex--column ${className}`}>

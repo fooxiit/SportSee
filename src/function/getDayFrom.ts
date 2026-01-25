@@ -1,7 +1,8 @@
 /**
  * @description return day from date string format
- * @param {String} date
- * @returns {String}
+ * @param  date
+ * @param  type @see DayType
+ * @returns
  */
 export function getDayFromDate(date: string, type: DayType) {
     switch (type) {
@@ -12,7 +13,11 @@ export function getDayFromDate(date: string, type: DayType) {
             return parseInt(date.split('-')[2], 10).toString(10);
     }
 }
-
+/**
+ * @description return day first letter from day number
+ * @param num
+ * @returns
+ */
 export function getDayFromNum(num: number): 'L' | 'M' | 'J' | 'V' | 'S' | 'D' {
     switch (num) {
         case dayNum[1]:
@@ -43,7 +48,10 @@ const dayNum = {
     6: 6,
     7: 7,
 };
-
+/**
+ * @enum DayType
+ * @description Enum to specify the type of day representation.
+ */
 export enum DayType {
     number,
     firstLetter,

@@ -1,6 +1,9 @@
 import STRING from '../../constante/String';
 import useUserContext from '../../hook/useUserContext';
-
+/**
+ * @description hero section of the home page
+ * @returns
+ */
 export default function HomeHeader() {
     const { user } = useUserContext();
     return (

@@ -6,9 +6,12 @@ import infoFactory from '../../../factory/StatsFactory';
 import UserService from '../../userService/UserService';
 import UserType from './type';
 import FetchDataType from '../../fetchData/type';
-import { InfoType } from '../../../types/infoType';
 
-class User implements UserType.User {
+/**
+ * @class
+ * @description User Class implementing UserType.User interface
+ */
+export default class User implements UserType.User {
     public id;
     public userInfos;
     public score;
@@ -91,5 +94,3 @@ class User implements UserType.User {
         return infos;
     }
 }
-
-export default User;

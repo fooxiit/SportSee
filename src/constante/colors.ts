@@ -1,3 +1,6 @@
+/**
+ * @description Constant object containing color codes used in the application
+ */
 const COLORS = {
     CHART: {
         DAILY: {

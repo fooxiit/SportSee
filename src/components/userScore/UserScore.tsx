@@ -1,12 +1,23 @@
-import useUserContext from '../../hook/useUserContext';
-import { RadialBarChart, PolarAngleAxis, RadialBar, Text, Label, ResponsiveContainer, LabelProps, LabelListProps } from 'recharts';
+import { RadialBarChart, PolarAngleAxis, RadialBar, Label, ResponsiveContainer } from 'recharts';
 import STRING from '../../constante/String';
 import { PolarViewBoxRequired } from 'recharts/types/util/types';
-import { LabelContentType, Props } from 'recharts/types/component/Label';
+import { Props } from 'recharts/types/component/Label';
+
+/**
+ * @description UserScore component props interface
+ * @property className Optional additional class names
+ * @property data User score chart data
+ */
 interface UserScoreProps {
     className?: string;
     data: ChartTypes.ScoreChart.Type;
 }
+/**
+ *
+ * @description UserScore component to display user score chart
+ * @param props
+ * @returns
+ */
 export default function UserScore({ className = '', data }: UserScoreProps) {
     return (
         <div className={`user-score flex flex--column flex--centre-item ${className}`}>

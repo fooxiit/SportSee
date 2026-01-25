@@ -4,7 +4,11 @@ import { NAV_ICONS } from '../../constante/link';
 import './sideNav.css';
 import STRING from '../../constante/String';
 import NavIcon from '../navIcon/NavIcon';
-
+/**
+ * @description SideNavBar component
+ * @param props
+ * @returns
+ */
 export default function Side() {
     return (
         <div className="side-nav flex flex--column flex--centre-item">

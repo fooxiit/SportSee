@@ -1,6 +1,19 @@
 import React from 'react';
 import './info.css';
-export default function Info({ infoData }) {
+import { InfoType } from '../../types/infoType';
+/**
+ * @description Info Props interface
+ * @property infoData Info data to display @see InfoType.Info
+ */
+interface InfoProps {
+    infoData: InfoType.Info;
+}
+/**
+ * @description Info component to display user info data
+ * @param props
+ * @returns
+ */
+export default function Info({ infoData }: InfoProps) {
     return (
         <div className={`flex flex--centre-item info info--${infoData.type}`}>
             <div data-type={infoData.type} className="flex flex--centre-item flex--centre-content info__logo">

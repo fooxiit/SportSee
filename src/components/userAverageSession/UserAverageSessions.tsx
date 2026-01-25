@@ -1,14 +1,22 @@
-import React, { ComponentProps, use, useCallback, useMemo } from 'react';
-import useUserContext from '../../hook/useUserContext';
-import useFetchData from '../../hook/useFetchData';
-import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, TooltipContentProps, XAxis, YAxis } from 'recharts';
+import { Line, LineChart, ResponsiveContainer, Tooltip, TooltipContentProps, XAxis, YAxis } from 'recharts';
 import COLORS from '../../constante/colors';
 import STRING from '../../constante/String';
 import './userAverageSessions.css';
+/**
+ * @description Chart types namespace
+ * @property className Optional additional class names
+ * @property data Sessions chart data
+ */
 interface UserAverageSessionsProps {
     className?: string;
     data: ChartTypes.SessionsChart.Type;
 }
+/**
+ *
+ * @description UserAverageSessions component to display user average session chart
+ * @param props
+ * @returns
+ */
 export default function UserAverageSessions({ className = '', data }: UserAverageSessionsProps) {
     return (
         <div className={`user-average-sessions flex flex--column ${className}`}>

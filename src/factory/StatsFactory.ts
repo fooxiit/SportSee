@@ -1,6 +1,12 @@
 import STRING from '../constante/String';
 import { InfoType } from '../types/infoType';
-
+/**
+ * @description Info Factory function to create Info objects based on type and value.
+ * @param type @see InfoType.Kind
+ * @param value - The numeric value associated with the info.
+ * @throws Error if the stat type is not found.
+ * @returns InfoType.Info @see InfoType.Info
+ */
 function infoFactory(type: string, value: number): InfoType.Info {
     switch (type) {
         case InfoType.Kind.calorieCount:

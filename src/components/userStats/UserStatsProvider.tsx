@@ -2,9 +2,19 @@ import React, { useCallback, useMemo } from 'react';
 import useFetchData from '../../hook/useFetchData';
 import useUserContext from '../../hook/useUserContext';
 import UserStats from './UserStats';
+/**
+ * @description UserStatsProvider Props interface
+ * @property className Optional additional class names
+ */
 interface UserStatsProviderProps {
     className?: string;
 }
+/**
+ *
+ * @description UserStatsProvider component to fetch and provide user stats data
+ * @param props
+ * @returns
+ */
 export default function UserStatsProvider({ className = '' }: UserStatsProviderProps) {
     const { user } = useUserContext();
     const getStat = useCallback(user.getPerformanceData.bind(user), [user]);

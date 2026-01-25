@@ -1,5 +1,10 @@
 import { useEffect, useState } from 'react';
-
+/**
+ * @description hook to fetch data from an async function
+ * @param fetchingFunction fetching function
+ * @param param parameters for the fetching function
+ * @returns returns an object with isLoading, onError and data properties
+ */
 function useFetchData<T>(fetchingFunction: ({}: any) => Promise<T>, param = {}): { isLoading: boolean; onError: { onError: boolean; cause?: any }; data: T | null } {
     const [isLoading, setIsLoading] = useState(true);
     const [onError, setOnError] = useState({ onError: false });

@@ -2,8 +2,12 @@ import { API_URL } from '../../constante/env';
 import UserType from '../class/user/type';
 import fetchData from '../fetchData/fetchData';
 import { UserServiceType } from './type';
-
-class UserService {
+/**
+ * @class
+ * @description UserService class provides static methods to fetch user-related data from the API.
+ * @remarks This class cannot be instantiated.
+ */
+export default class UserService {
     static #URL_API = API_URL;
     constructor() {
         throw new Error("this class con't be instantiated");
@@ -29,5 +33,3 @@ class UserService {
         return responce;
     }
 }
-
-export default UserService;
