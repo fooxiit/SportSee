@@ -7,15 +7,9 @@ import STRING from '../../constante/String';
 import './userAverageSessions.css';
 interface UserAverageSessionsProps {
     className?: string;
+    data: ChartTypes.SessionsChart.Type;
 }
-export default function UserAverageSessions({ className = '' }: UserAverageSessionsProps) {
-    const { user } = useUserContext();
-    const getUserData = useCallback(user.getSesionTimeData.bind(user), [user]);
-    const parm = useMemo(() => ({}), []);
-    const { isLoading, onError, data } = useFetchData(getUserData, parm);
-    if (isLoading) return <div>loading</div>;
-    if (onError.onError || data === null) return <div>error</div>;
-
+export default function UserAverageSessions({ className = '', data }: UserAverageSessionsProps) {
     return (
         <div className={`user-average-sessions flex flex--column ${className}`}>
             <h2>{STRING.FR.CHARTS.SESION_TIME.TITLE}</h2>
@@ -71,8 +65,8 @@ function CustomTooltip({ payload }: TooltipContentProps<string | number, number>
         <div className="tolltip">
             <div className="fade-screen"></div>
             <ul className="flex flex--column flex--centre-content">
-                {payload.map(({ value, dataKey }: { value: number; dataKey: keyof typeof unit }) => (
-                    <li>
+                {payload.map(({ value, dataKey }: { value: number; dataKey: keyof typeof unit }, index) => (
+                    <li key={`session-toolTip-${index}`}>
                         {value} {unit[dataKey]}
                     </li>
                 ))}

@@ -5,17 +5,17 @@ import { PolarViewBoxRequired } from 'recharts/types/util/types';
 import { LabelContentType, Props } from 'recharts/types/component/Label';
 interface UserScoreProps {
     className?: string;
+    data: ChartTypes.ScoreChart.Type;
 }
-export default function UserScore({ className = '' }: UserScoreProps) {
-    const { user } = useUserContext();
+export default function UserScore({ className = '', data }: UserScoreProps) {
     return (
         <div className={`user-score flex flex--column flex--centre-item ${className}`}>
             <h2>{STRING.FR.CHARTS.SCORE.TITLE}</h2>
             <ResponsiveContainer width="70%" height="70%">
-                <RadialBarChart className="chart" barGap={0} innerRadius="100%" startAngle={180} endAngle={-180} barSize={14} data={user.scoreData.data}>
+                <RadialBarChart className="chart" barGap={0} innerRadius="100%" startAngle={180} endAngle={-180} barSize={14} data={data.data}>
                     <PolarAngleAxis tick={false} type="number" domain={[0, 100]} />
 
-                    {user.scoreData.radialBars.map((radialBar, index) => (
+                    {data.radialBars.map((radialBar, index) => (
                         <RadialBar
                             cornerRadius={100}
                             barSize={10}
@@ -25,7 +25,7 @@ export default function UserScore({ className = '' }: UserScoreProps) {
                             dataKey={radialBar.dataKey}
                         />
                     ))}
-                    <Label content={CustomizedLabel} value={user.scoreData.score} />
+                    <Label content={CustomizedLabel} value={data.score} />
                 </RadialBarChart>
             </ResponsiveContainer>
         </div>

@@ -7,14 +7,9 @@ import { Props } from 'recharts/types/component/Label';
 import { TickItemTextProps } from 'recharts/types/polar/PolarAngleAxis';
 interface UserStatsProps {
     className?: string;
+    data: ChartTypes.PerformanceChart.Type;
 }
-export default function UserStats({ className = '' }: UserStatsProps) {
-    const { user } = useUserContext();
-    const getStat = useCallback(user.getPerformanceData.bind(user), [user]);
-    const parm = useMemo(() => ({}), []);
-    const { isLoading, onError, data } = useFetchData(getStat, parm);
-    if (isLoading) return <div>loading</div>;
-    if (onError.onError || !data) return <div>error</div>;
+export default function UserStats({ className = '', data }: UserStatsProps) {
     return (
         <div className={`user-stats ${className}`}>
             <ResponsiveContainer width="100%" height="100%">

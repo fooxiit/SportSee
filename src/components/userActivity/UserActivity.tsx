@@ -7,15 +7,9 @@ import './UserActivity.css';
 import { AxisDomain } from 'recharts/types/util/types';
 interface UserActivityProps {
     className?: string;
+    data: ChartTypes.ActivityChart.Type;
 }
-export default function UserActivity({ className = '' }: UserActivityProps) {
-    const { user } = useUserContext();
-    const getActivity = useCallback(user.getActivityData.bind(user), [user]);
-    const parm = useMemo(() => ({}), []);
-    const { isLoading, onError, data } = useFetchData(getActivity, parm);
-    if (onError.onError) return <div>error</div>;
-    if (isLoading) return <div>loading</div>;
-    if (data === null) return <div>error</div>;
+export default function UserActivity({ data, className = '' }: UserActivityProps) {
     return (
         <div className={`user-activity flex flex--column ${className}`}>
             <ResponsiveContainer width="100%" height="100%">
