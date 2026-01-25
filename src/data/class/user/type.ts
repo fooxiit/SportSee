@@ -58,7 +58,8 @@ namespace UserType {
         userInfos: Info;
         score: number;
         userData: keyData;
-
+        infos: InfoType.Info[];
+        scoreData: ChartTypes.RadialChart.Chart<ChartTypes.ScoreChart.data>;
         getActivityData({ signal }: { signal: AbortSignal }): Promise<ChartTypes.BarChart.Chart<ChartTypes.ActivityChart.Data>>;
         getSesionTimeData({ signal }: { signal: AbortSignal }): Promise<ChartTypes.LineChart.Chart<ChartTypes.SessionsChart.Data>>;
         getPerformanceData({ signal }: { signal: AbortSignal }): Promise<ChartTypes.RadarChart.Chart<ChartTypes.PerformanceChart.Data>>;
