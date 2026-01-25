@@ -10,7 +10,7 @@ interface UserActivityProps {
 }
 export default function UserActivity({ className = '' }: UserActivityProps) {
     const { user } = useUserContext();
-    const getActivity = useCallback(user.getActivityData, [user]);
+    const getActivity = useCallback(user.getActivityData.bind(user), [user]);
     const parm = useMemo(() => ({}), []);
     const { isLoading, onError, data } = useFetchData(getActivity, parm);
     if (onError.onError) return <div>error</div>;
