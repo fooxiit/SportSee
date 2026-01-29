@@ -6,6 +6,7 @@ import infoFactory from '../../../factory/StatsFactory';
 import UserService from '../../userService/UserService';
 import UserType from './type';
 import FetchDataType from '../../fetchData/type';
+import MockedService from '../../userService/MockedService';
 
 /**
  * @class
@@ -16,22 +17,25 @@ export default class User implements UserType.User {
     public userInfos;
     public score;
     public userData;
+    private service;
 
-    static async getUserById({ id, signal }: { id: number; signal?: AbortSignal }): Promise<UserType.User> {
-        const responce = await UserService.getUserById(id, signal);
+    static async getUserById({ id, signal, useMock = false }: { id: number; signal?: AbortSignal; useMock: boolean }): Promise<UserType.User> {
+        const service = useMock ? new MockedService() : new UserService();
+        const responce = await service.getUserById(id, signal);
         if (responce.status === FetchDataType.responceStatus.ERROR) throw new Error(responce.message, { cause: responce });
-        return new User(responce.data.data);
+        return new User(responce.data.data, service);
     }
 
-    constructor({ id, userInfos, score, todayScore, keyData }: UserType.RawData) {
+    constructor({ id, userInfos, score, todayScore, keyData }: UserType.RawData, service: UserService) {
         this.id = id;
         this.userInfos = userInfos;
         this.score = score || todayScore || 0;
         this.userData = keyData;
+        this.service = service;
     }
 
     async getActivityData({ signal }: { signal?: AbortSignal }): Promise<ChartTypes.BarChart.Chart<ChartTypes.ActivityChart.Data>> {
-        const responce = await UserService.getUserActivityById(this.id, signal);
+        const responce = await this.service.getUserActivityById(this.id, signal);
         if (responce.status === FetchDataType.responceStatus.ERROR) throw new Error(responce.message, { cause: responce });
         const { sessions } = responce.data.data;
         return {
@@ -57,7 +61,7 @@ export default class User implements UserType.User {
     }
 
     async getSesionTimeData({ signal }: { signal?: AbortSignal }): Promise<ChartTypes.LineChart.Chart<ChartTypes.SessionsChart.Data>> {
-        const responce = await UserService.getUserSessionsById(this.id, signal);
+        const responce = await this.service.getUserSessionsById(this.id, signal);
         if (responce.status === FetchDataType.responceStatus.ERROR) throw new Error(responce.message, { cause: responce });
         const { sessions } = responce.data.data;
         return {
@@ -68,7 +72,7 @@ export default class User implements UserType.User {
     }
 
     async getPerformanceData({ signal }: { signal?: AbortSignal }): Promise<ChartTypes.RadarChart.Chart<ChartTypes.PerformanceChart.Data>> {
-        const responce = await UserService.getUserPerformanceById(this.id, signal);
+        const responce = await this.service.getUserPerformanceById(this.id, signal);
         if (responce.status === FetchDataType.responceStatus.ERROR) throw new Error(responce.message, { cause: responce });
         const { data, kind } = responce.data.data;
         return {

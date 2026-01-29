@@ -12,4 +12,11 @@ export namespace UserServiceType {
     export interface DataResponce<T> {
         data: T;
     }
+
+    export interface UserServiceInterface {
+        getUserById(id: string | number, signal?: AbortSignal): Promise<FetchDataType.FetchDataResponse<DataResponce<UserType.RawData>>>;
+        getUserActivityById(id: string | number, signal?: AbortSignal): Promise<FetchDataType.FetchDataResponse<DataResponce<UserType.Activity.RowData>>>;
+        getUserSessionsById(id: string | number, signal?: AbortSignal): Promise<FetchDataType.FetchDataResponse<DataResponce<UserType.Session.RowData>>>;
+        getUserPerformanceById(id: string | number, signal?: AbortSignal): Promise<FetchDataType.FetchDataResponse<DataResponce<UserType.Performance.RowData>>>;
+    }
 }
