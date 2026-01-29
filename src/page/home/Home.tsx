@@ -1,4 +1,5 @@
 import HomeHeader from '../../components/home/HomeHeader';
+import Loading from '../../components/loading/Loading';
 import UserActivityProvider from '../../components/userActivity/UserActivityProvider';
 import UserAverageSessionsProvider from '../../components/userAverageSession/UserAverageSessionsProvider';
 import UserInfoProvider from '../../components/userInfo/UserInfoProvider';

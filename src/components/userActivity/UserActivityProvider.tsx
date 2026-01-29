@@ -2,6 +2,8 @@ import React, { useCallback, useMemo } from 'react';
 import useFetchData from '../../hook/useFetchData';
 import useUserContext from '../../hook/useUserContext';
 import UserActivity from './UserActivity';
+import UserActivityError from './UserActivityError';
+import Loading from '../loading/Loading';
 /**
  * @description UserActivityProvider Props interface
  * @property className Optional additional class names
@@ -19,7 +21,8 @@ export default function UserActivityProvider({ className = '' }: UserActivityPro
     const getActivity = useCallback(user.getActivityData.bind(user), [user]);
     const parm = useMemo(() => ({}), []);
     const { isLoading, onError, data } = useFetchData(getActivity, parm);
-    if (onError.onError || !data) return <div>error</div>;
-    if (isLoading) return <div>loading</div>;
+
+    if (isLoading) return <Loading className={className} />;
+    if (onError.onError || !data) return <UserActivityError className={className} error={onError} />;
     return <UserActivity data={data} className={className} />;
 }
