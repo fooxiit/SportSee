@@ -31,7 +31,7 @@ function nameToFr(kindName: string) {
         case kindNameEn.intensity:
             return STRING.FR.CHARTS.STATS.LEDGEND.INTENSITY;
         default:
-            throw new Error('Unknown kind name');
+            throw new Error(`Unknown kind name`);
     }
 }
 

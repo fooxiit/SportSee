@@ -27,7 +27,6 @@ const UserContextWarpper = ({ children, userId }: UserContextProps) => {
     if (isLoading) return <Loading className="home grid" />;
 
     if (onError.onError || !data) {
-        console.log(onError);
         return (
             <div className="error-warpper">
                 <Error errorMessage={''} />

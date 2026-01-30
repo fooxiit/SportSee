@@ -7,6 +7,7 @@ import UserService from '../../userService/UserService';
 import UserType from './type';
 import FetchDataType from '../../fetchData/type';
 import MockedService from '../../userService/MockedService';
+import { MODE } from '../../../constante/env';
 
 /**
  * @class
@@ -19,8 +20,8 @@ export default class User implements UserType.User {
     public userData;
     private service;
 
-    static async getUserById({ id, signal, useMock = false }: { id: number; signal?: AbortSignal; useMock: boolean }): Promise<UserType.User> {
-        const service = useMock ? new MockedService() : new UserService();
+    static async getUserById({ id, signal }: { id: number; signal?: AbortSignal }): Promise<UserType.User> {
+        const service = MODE === 'dev' ? new MockedService() : new UserService();
         const responce = await service.getUserById(id, signal);
         if (responce.status === FetchDataType.responceStatus.ERROR) throw new Error(responce.message, { cause: responce });
         return new User(responce.data.data, service);

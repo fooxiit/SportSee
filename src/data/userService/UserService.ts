@@ -1,5 +1,4 @@
 import { API_URL } from '../../constante/env';
-import STRING from '../../constante/String';
 import UserType from '../class/user/type';
 import fetchData from '../fetchData/fetchData';
 import { UserServiceType } from './type';
