@@ -1,6 +1,8 @@
 import STRING from '../../constante/String';
 import FetchDataType from '../../data/fetchData/type';
-
+/**
+ * @description Get the error message corresponding to the given status code.
+ */
 export default function getErroeMessage(statueCode: FetchDataType.ErrorStatusCode) {
     switch (statueCode) {
         case 400:
