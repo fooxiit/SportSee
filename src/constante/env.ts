@@ -3,4 +3,4 @@
  */
 export const API_URL = 'http://localhost:3000/';
 
-export const MODE: string = 'dev';
+export const MODE: string = 'prod';
