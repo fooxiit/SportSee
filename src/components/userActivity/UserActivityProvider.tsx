@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo } from 'react';
-import useFetchData from '../../hook/useFetchData';
+import useFetchData, { STATUS } from '../../hook/useFetchData';
 import useUserContext from '../../hook/useUserContext';
 import UserActivity from './UserActivity';
 import UserActivityError from './UserActivityError';
@@ -20,9 +20,9 @@ export default function UserActivityProvider({ className = '' }: UserActivityPro
     const { user } = useUserContext();
     const getActivity = useCallback(user.getActivityData.bind(user), [user]);
     const parm = useMemo(() => ({}), []);
-    const { isLoading, onError, data } = useFetchData(getActivity, parm);
+    const responce = useFetchData(getActivity, parm);
 
-    if (isLoading) return <Loading className={className} />;
-    if (onError.onError || !data) return <UserActivityError className={className} error={onError} />;
-    return <UserActivity data={data} className={className} />;
+    if (responce.status === STATUS.LOADING) return <Loading className={className} />;
+    if (responce.status === STATUS.ERROR) return <UserActivityError className={className} error={responce.error} />;
+    return <UserActivity data={responce.data} className={className} />;
 }

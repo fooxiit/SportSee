@@ -1,5 +1,5 @@
 import UserContext from './UserContext';
-import useFetchData from '../hook/useFetchData';
+import useFetchData, { STATUS } from '../hook/useFetchData';
 import { ReactNode, useCallback, useMemo } from 'react';
 import User from '../data/class/user/User';
 import Error from '../components/error/Error';
@@ -23,17 +23,17 @@ interface UserContextProps {
 const UserContextWarpper = ({ children, userId }: UserContextProps) => {
     const parm = useMemo(() => ({ id: userId }), [userId]);
     const fetcher = useCallback(User.getUserById, []);
-    const { isLoading, onError, data } = useFetchData(fetcher, parm);
-    if (isLoading) return <Loading className="home grid" />;
+    const responce = useFetchData(fetcher, parm);
+    if (responce.status === STATUS.LOADING) return <Loading className="home grid" />;
 
-    if (onError.onError || !data) {
+    if (responce.status === STATUS.ERROR) {
         return (
-            <div className="error-warpper">
-                <Error errorMessage={''} />
+            <div className="error-warpper home grid">
+                <Error errorMessage={responce.error.message} />
             </div>
         );
     }
-    return <UserContext value={{ user: data }}>{children}</UserContext>;
+    return <UserContext value={{ user: responce.data }}>{children}</UserContext>;
 };
 
 export default UserContextWarpper;

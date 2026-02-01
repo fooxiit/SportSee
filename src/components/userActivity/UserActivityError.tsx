@@ -5,10 +5,11 @@ import COLORS from '../../constante/colors';
 import STRING from '../../constante/String';
 import { getDayFromDate, DayType } from '../../function/getDayFrom';
 import Error from '../error/Error';
+import HttpError from '../../data/fetchData/HttpError';
 
 interface Props {
     className?: string;
-    error: any;
+    error: HttpError;
 }
 
 export default function UserActivityError({ className = '', error }: Props) {
@@ -32,10 +33,9 @@ export default function UserActivityError({ className = '', error }: Props) {
         ],
         data: [],
     } as ChartTypes.ActivityChart.Type;
-    const message = getErroeMessage(error.cause.cause.statusCode);
     return (
         <div className={`user-activity error-warpper flex flex--column ${className}`}>
-            <Error errorMessage={message} />
+            <Error errorMessage={error.message} />
             <UserActivity data={data} className={className} />
         </div>
     );

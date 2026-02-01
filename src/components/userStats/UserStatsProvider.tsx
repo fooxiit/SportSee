@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo } from 'react';
-import useFetchData from '../../hook/useFetchData';
+import useFetchData, { STATUS } from '../../hook/useFetchData';
 import useUserContext from '../../hook/useUserContext';
 import UserStats from './UserStats';
 import UserStatsError from './UserStatsError';
@@ -21,8 +21,8 @@ export default function UserStatsProvider({ className = '' }: UserStatsProviderP
     const { user } = useUserContext();
     const getStat = useCallback(user.getPerformanceData.bind(user), [user]);
     const parm = useMemo(() => ({}), []);
-    const { isLoading, onError, data } = useFetchData(getStat, parm);
-    if (isLoading) return <Loading className={className} />;
-    if (onError.onError || !data) return <UserStatsError error={onError} className={className} />;
-    return <UserStats data={data} className={className} />;
+    const responce = useFetchData(getStat, parm);
+    if (responce.status === STATUS.LOADING) return <Loading className={className} />;
+    if (responce.status === STATUS.ERROR) return <UserStatsError error={responce.error} className={className} />;
+    return <UserStats data={responce.data} className={className} />;
 }

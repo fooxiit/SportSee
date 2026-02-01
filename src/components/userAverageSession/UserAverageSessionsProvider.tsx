@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo } from 'react';
-import useFetchData from '../../hook/useFetchData';
+import useFetchData, { STATUS } from '../../hook/useFetchData';
 import useUserContext from '../../hook/useUserContext';
 import UserAverageSessions from './UserAverageSessions';
 import UserAverageSessionsError from './UserAverageSessionsError';
@@ -22,8 +22,8 @@ export default function UserAverageSessionsProvider({ className = '' }: UserAver
     const { user } = useUserContext();
     const getUserData = useCallback(user.getSesionTimeData.bind(user), [user]);
     const parm = useMemo(() => ({}), []);
-    const { isLoading, onError, data } = useFetchData(getUserData, parm);
-    if (isLoading) return <Loading className={`user-average-sessions flex flex--column ${className}`} />;
-    if (onError.onError || data === null) return <UserAverageSessionsError error={onError} className={className} />;
-    return <UserAverageSessions data={data} className={className} />;
+    const responce = useFetchData(getUserData, parm);
+    if (responce.status === STATUS.LOADING) return <Loading className={`user-average-sessions flex flex--column ${className}`} />;
+    if (responce.status === STATUS.ERROR) return <UserAverageSessionsError error={responce.error} className={className} />;
+    return <UserAverageSessions data={responce.data} className={className} />;
 }
